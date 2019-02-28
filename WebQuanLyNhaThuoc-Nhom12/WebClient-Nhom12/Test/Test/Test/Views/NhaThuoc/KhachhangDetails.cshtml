@@ -1,0 +1,88 @@
+﻿@model Test.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "KhachhangDetails";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<hr />
+<h3 style="text-align: center">THÔNG TIN TÀI KHOẢN</h3>
+<hr />
+
+@*Chi tiết tài khoản*@
+<form class="form-horizontal">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="email">Họ tên</label>
+            <div class="col-sm-6">
+                <p class="form-control-static">@Html.DisplayFor(model => model.TENKHACHHANG)</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="email">Giới tính</label>
+            <div class="col-sm-6">
+                @if (Model.GIOITINH == true)
+            {
+                    <p class="form-control-static">Nam</p>
+                }
+                else
+                {
+                    <p class="form-control-static">Nữ</p>
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="email">Ngày sinh</label>
+            <div class="col-sm-6">
+                <p class="form-control-static">@String.Format("{0:dd/MM/yyyy}", Model.NGAYSINH)</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="email">Địa chỉ</label>
+            <div class="col-sm-6">
+                <p class="form-control-static">@Html.DisplayFor(model => model.DIACHI)</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="email">Số điện thoại</label>
+            <div class="col-sm-6">
+                <p class="form-control-static">@Html.DisplayFor(model => model.SODIENTHOAI)</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="email">Email</label>
+            <div class="col-sm-6">
+                <p class="form-control-static">@Html.DisplayFor(model => model.EMAIL)</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="email">CMND</label>
+            <div class="col-sm-6">
+                <p class="form-control-static">@Html.DisplayFor(model => model.CMND)</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="email"></label>
+            <div class="col-sm-6">
+                <button type="button" class="btn btn-default btn-sm" onclick="location.href='@Url.Action("Editkhachhang", new { id = Model.MAKH })'">
+                    <span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa thông tin
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+@*Lịch sử mua hàng*@
+<div class="col-sm-5">
+    <div class="display-label" style="font-size: 120%; margin-bottom: 10px; text-align: center">
+        <b>Lịch sử mua hàng gần nhất</b>
+    </div>
+    @{
+        Html.RenderAction("ListHD", "NhaThuoc", new { id = Model.MAKH });
+    }
+</div>

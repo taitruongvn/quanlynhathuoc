@@ -1,0 +1,63 @@
+﻿@model IEnumerable<HeQuanTri.Models.ViewCTNHAPHANGHOA>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{Html.RenderAction("ListHangCanNhap"); }
+
+
+<h2>Chi Tiết Hàng Hóa Nhập</h2>
+<h3 style="color:red">@if (Session["Loi"] != null) { @Session["Loi"].ToString() }</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MAHANGHOA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TENHANGHOA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DONGIANHAP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.THANHTIEN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SOLUONGNHAP)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <form action="/NhapHang/XoaNhap">
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MAHANGHOA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TENHANGHOA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DONGIANHAP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.THANHTIEN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SOLUONGNHAP)
+                @Html.Hidden("mahanghoa", item.MAHANGHOA)
+            </td>
+            <td>
+                @*@Html.ActionLink("Xóa", "XoaNhap", new { id = item.MAHANGHOA })*@
+                <input type="submit" value="Xóa" class="btn" />
+            </td>
+        </tr>
+    </form>
+}
+
+</table>
+
+@Html.ActionLink("Xác Nhận Nhập", "XacNhanNhap")

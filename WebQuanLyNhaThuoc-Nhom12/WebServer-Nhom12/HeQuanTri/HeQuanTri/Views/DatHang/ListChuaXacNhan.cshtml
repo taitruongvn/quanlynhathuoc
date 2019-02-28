@@ -1,0 +1,62 @@
+﻿@model IEnumerable<HeQuanTri.Models.DATHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đặt Hàng Chưa Xác Nhận</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MADH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAKH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NGAYLAP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TONGTIEN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIENTHANHTOAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIENTHUA)
+        </th>
+        <th>Thao Tác</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MADH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MAKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NGAYLAP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TONGTIEN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIENTHANHTOAN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIENTHUA)
+            </td>
+    
+            <td>
+                @Html.ActionLink("Xác Nhận Đơn Hàng", "XacNhanDatHang", new { id = item.MADH }) |
+                @Html.ActionLink("Chi Tiết", "ChiTiet", new { id = item.MADH })
+            </td>
+        </tr>
+    }
+
+</table>

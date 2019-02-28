@@ -1,0 +1,32 @@
+﻿@*@model IEnumerable<Test.Models.HANGHOA>*@
+@using Test.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<HANGHOA>
+@{
+    ViewBag.Title = "Sản phẩm theo nhóm hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<hr />
+<h4>HÀNG HÓA THEO NHÓM HÀNG HÓA</h4>
+<hr />
+<div class="table-responsive">
+    <table align="center">
+        <tr>
+            @foreach (var hanghoa in Model)
+            {
+                <td>
+                    <a href="@Url.Action("Details","NhaThuoc",new { id = @hanghoa.MAHANGHOA, nh = @hanghoa.MANHOMHANG })">
+                        <img alt="@hanghoa.TENHANGHOA" src="~/images/@hanghoa.ANHHANGHOA" width="180" height="180" />
+                    </a>
+                    <a href="@Url.Action("Details", "NhaThuoc", new { id = @hanghoa.MAHANGHOA, nh = @hanghoa.MANHOMHANG })">
+                        <h4 style="text-align: center">
+                            @hanghoa.TENHANGHOA
+                        </h4>
+                    </a>
+                </td>
+            }
+        </tr>
+    </table>
+</div>
+Trang@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

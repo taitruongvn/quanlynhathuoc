@@ -1,0 +1,38 @@
+﻿@using Test.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<HANGHOA>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<hr />
+<h4>KẾT QUẢ TÌM KIẾM</h4>
+<hr />
+<div class="table-responsive">
+    <table align="center">
+        <tr>
+            @foreach (var hanghoa in Model)
+            {
+                <td>
+                    <a href="@Url.Action("Details", "NhaThuoc", new { id = @hanghoa.MAHANGHOA, nh = @hanghoa.MANHOMHANG })">
+                        <img alt="@hanghoa.TENHANGHOA" src="~/images/@hanghoa.ANHHANGHOA" width="200" height="250" />
+                    </a>
+                    <a href="@Url.Action("Details", "NhaThuoc", new { id = @hanghoa.MAHANGHOA, nh = @hanghoa.MANHOMHANG })">
+                        <h4 style="text-align:center">@hanghoa.TENHANGHOA</h4>
+                    </a>
+                </td>
+            }
+        </tr>
+    </table>
+</div>
+
+
+<div class="MenuTrang">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

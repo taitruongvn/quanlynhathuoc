@@ -1,0 +1,43 @@
+﻿@if (Session["Show"] != null)
+{
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Trang chủ", "index", "NhaThuoc")</li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Tài khoản", "KhachhangDetails", new { id = Session["Show2"] })</li>
+        <li>@Html.ActionLink("Đăng xuất", "Dangxuat", "Khachhang")</li>
+        <li><a href="">@Session["Show"]</a></li>
+        @Html.Action("GiohangPartial", "Giohang")
+        <li style="margin-top: 8px; margin-right: 15px">
+            @using (Html.BeginForm("Search", "NhaThuoc", FormMethod.Get))
+            {
+            <li>
+                @Html.TextBox("SearchString", "", new { placeholder = "Nhập tên sản phẩm" })
+                <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+            </li>
+            }
+        </li>   
+     </ul>
+}
+else
+{
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Trang chủ", "index", "NhaThuoc")</li>
+        <li>@Html.ActionLink("Đăng nhập", "Dangnhap", "Khachhang")</li>
+        <li>@Html.ActionLink("Đăng ký", "Add_record", "Khachhang")</li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        @Html.Action("GiohangPartial", "Giohang")
+        <li style="margin-top: 8px; margin-right: 15px">
+            @using (Html.BeginForm("Search", "NhaThuoc", FormMethod.Get))
+            {
+            <li>
+                @Html.TextBox("SearchString", "", new { placeholder = "Nhập tên sản phẩm" })
+                <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+            </li>
+            }
+            </li>
+        </ul>
+}

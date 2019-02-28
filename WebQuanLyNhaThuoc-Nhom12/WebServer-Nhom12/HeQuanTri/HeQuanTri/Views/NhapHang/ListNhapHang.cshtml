@@ -1,0 +1,48 @@
+﻿@model IEnumerable<HeQuanTri.Models.NHAPHANGHOA>
+
+@{
+    ViewBag.Title = "ListNhapHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh Sách Hóa Đơn Nhập Hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MANHAPHANGHOA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MANV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NGAYNHAP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TONGSOTIEN)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MANHAPHANGHOA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MANV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NGAYNHAP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TONGSOTIEN)
+        </td>
+     
+        <td>
+            @Html.ActionLink("Chi Tiết", "ChiTiet", new { id=item.MANHAPHANGHOA })
+        </td>
+    </tr>
+}
+
+</table>

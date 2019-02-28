@@ -1,0 +1,61 @@
+﻿@model IEnumerable<HeQuanTri.Models.HANGHOA>
+
+<h2>Danh Sách Hàng Cần Nhập</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TENHANGHOA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DONGIANHAP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DONGIABAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SOLUONGTON)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <form action="/NhapHang/ThemNhap">
+        <tr class="dong">
+            <td>
+                @Html.DisplayFor(modelItem => item.TENHANGHOA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DONGIANHAP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DONGIABAN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SOLUONGTON)
+            </td>
+            <td>
+                @Html.Editor("soluongnhap", new { htmlAttributes = new { @class = "soluongdat", @type = "number" } })
+                @Html.Hidden("mahanghoa",item.MAHANGHOA)
+                @Html.Hidden("tenhanghoa", item.TENHANGHOA)
+            </td>
+            <td>
+                @*@Html.ActionLink("THÊM", "ThemNhap",null, new { id=item.MAHANGHOA,ten=item.TENHANGHOA,dongianhap=item.DONGIABAN}, new { htmlAttributes = new { @class = "them"} })*@
+                <input type="submit" value="Thêm" class="btn"/>
+            </td>
+        </tr>
+    </form>
+}
+
+</table>
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $('.them').click(function () {
+                var name = $(this).parents('.dong').children('.soluongdat').val();
+                alert(name);
+                this.href = this.href + '?soluongdat=' + encodeURIComponent(name);
+            });
+        });
+    });
+</script>

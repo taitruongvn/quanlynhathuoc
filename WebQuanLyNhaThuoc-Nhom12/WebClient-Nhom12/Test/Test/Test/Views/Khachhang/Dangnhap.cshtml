@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2 style="text-align:center">ĐĂNG NHẬP</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>LOGIN</title>
+    <hr />
+</head>
+<body>
+    <div>
+        <form method="post">
+            <table align="center">
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" class="form-control" name="userid" placeholder="Username" style="width:200px">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" class="form-control" name="password" placeholder="Password" style="width:200px">
+                        </div>
+                    </td>
+
+                </tr>
+
+                <tr style="height:40px">
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Đăng nhập" class="btn btn-info" style="width:120px" />
+                        <input type="button" value="Đăng ký" class="btn btn-info" onclick="location.href='@Url.Action("Add_record", "Khachhang")'" style="width:120px"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    @{
+        if (TempData["msg2"] != null)
+        {
+            <script type="text/javascript">
+                alert('@TempData["msg2"]');
+            </script>
+        }
+    }
+</body>
+</html>
+

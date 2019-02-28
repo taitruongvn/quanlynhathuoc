@@ -1,0 +1,32 @@
+﻿@using Test.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<CTQD>
+@{
+    ViewBag.Title = "Nhà Thuốc G12";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<hr />
+<h4>SẢN PHẨM MỚI</h4>
+<hr />
+<div class="table-responsive">
+    <table align="center">
+        <tr>
+            @foreach (var hanghoa in Model)
+            {
+                <td>
+                    <a href="@Url.Action("Details", "NhaThuoc", new { id = @hanghoa.MAHANGHOA, nh = @hanghoa.HANGHOA.MANHOMHANG })">
+                        <img alt="@hanghoa.HANGHOA.TENHANGHOA" src="~/images/@hanghoa.HANGHOA.ANHHANGHOA" width="180" height="180" />
+                    </a>
+                    <a href="@Url.Action("Details", "NhaThuoc", new { id = @hanghoa.MAHANGHOA, nh = @hanghoa.HANGHOA.MANHOMHANG })">
+                        <h4 style="text-align:center">@hanghoa.HANGHOA.TENHANGHOA</h4>
+                    </a>
+                </td>
+            }
+        </tr>
+    </table>
+</div>
+@{
+    Html.RenderAction("showbanchay", "NhaThuoc");
+}
+
+

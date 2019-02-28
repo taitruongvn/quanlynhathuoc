@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Test.Models.NHOMHANG>
+<p class="lead">NHÓM HÀNG HÓA</p>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("SPTheonhomhang", "NhaThuoc", new { id = item.MANHOMHANG })" class="list-group-item">
+            @item.TENNHOMHANG
+        </a>
+    }
+</div>
+

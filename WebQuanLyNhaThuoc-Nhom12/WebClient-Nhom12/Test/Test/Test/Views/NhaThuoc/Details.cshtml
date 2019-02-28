@@ -1,0 +1,52 @@
+﻿<style type="text/css">
+    #Datmua a {
+        clear: both;
+        background-color: red;
+        color: white;
+        width: 120px;
+        height: 35px;
+        display: block;
+        float: left;
+        text-align: center;
+        padding-top: 10px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        #Datmua a:hover {
+            background-color: gray;
+            color: red;
+        }
+</style>
+@using Test.Models
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h3>THÔNG TIN CHI TIẾT HÀNG HÓA</h3>
+<hr />
+<div>
+    <div style="width:40%; float:left; border-left:dotted 1px; border-color: azure">
+        <img src="~/images/@Model.ANHHANGHOA" width="180" height="180" />
+    </div>
+    <div style="width: 60%; float: left; padding: 10px">
+        <p style="font-weight:bold">Tên hàng hóa: <span style="color:red; font-size: 16pt">@Model.TENHANGHOA</span></p>
+        <p style="font-weight:bold">Giá bán: <span style="color:red; font-size: 16pt">@Model.DONGIABAN VNĐ</span></p>
+        <p style="font-weight:bold">Nhóm hàng: <span style="color:red; font-size: 16pt">@Model.NHOMHANG.TENNHOMHANG</span></p>
+        <p style="font-weight:bold">Nhà cung cấp: <span style="color:red; font-size: 16pt">@Model.NHACUNGCAP.TENNHACUNGCAP</span></p>
+        <p style="font-weight:bold">Đơn vị: <span style="color:red; font-size: 16pt">@Model.DONVITINH.TENDONVITINH</span></p>
+        <div>
+            <div id="Datmua">
+                <a href="@Url.Action("ThemGiohang","GioHang", new {iMAHANGHOA=Model.MAHANGHOA, @strURL=Request.Url.ToString()})" class="list-group-item">
+                    ĐẶT MUA
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+@{
+    Html.RenderAction("SPlienquan", "NhaThuoc");
+}
+
+

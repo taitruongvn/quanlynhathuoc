@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Test.Models.HOADON>
+
+@{
+    Layout = null;
+    ViewBag.Title = "Index";
+}
+
+<div class="table-responsive">
+    <table class="table" style="width: 100%; margin-bottom:20px;" align="center">
+        <tr>
+            <th style="width: 7%; padding-right:40px">
+                <label>Ngày mua</label>
+            </th>
+            <th style="width: 7%; padding-right:40px">
+                <label>Tổng tiền</label>
+            </th>
+            <th style="width: 17%; padding-right: 40px"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="width: 7%; padding-right:40px">                 
+                    @String.Format("{0:dd/MM/yyyy}", item.NGAYLAP)
+                </td>
+                <td style="width: 7%; padding-right:40px">
+                    @item.TONGTIEN VNĐ
+                </td>
+                <td style="width: 17%; padding-right:40px">
+                    @Html.ActionLink("Chi tiết", "DetailsHD", "NhaThuoc", new { id = item.MAHD }, new { })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
